@@ -1,10 +1,13 @@
-// Create an app
-var server = require('diet')
-var app = server()
-app.listen('http://localhost:8000')
+var server = require('diet');
+var app = server();
+app.listen('http://localhost:63342');
 
-// When http://localhost:8000/ is requested, respond with "Hello World!"
-app.get('/', function($){
-    $.end('Hello World!')
+app.post('/', function($){
+    var feedBack = {
+        name: $.body.name,
+        email: $.body.email,
+        subject: $.body.subject,
+        message: $.body.message
+    }
 })
 
