@@ -1,0 +1,74 @@
+class FeedBack extends React.Component {
+    constructor(props) {
+        super(props);
+        this.state = {name: ''};
+        this.state = {email: ''};
+        this.state = {subject: ''};
+        this.state = {message: ''};
+
+        this.handleChangeName = this.handleChangeName.bind(this);
+        this.handleChangeEmail = this.handleChangeEmail.bind(this);
+        this.handleChangeSubject = this.handleChangeSubject.bind(this);
+        this.handleChangeMessage = this.handleChangeMessage.bind(this);
+        this.handleSubmit = this.handleSubmit.bind(this);
+    }
+
+
+    handleChangeName(event) {
+        this.setState({name: event.target.value});
+    }
+    handleChangeEmail(event) {
+        this.setState({email: event.target.value});
+    }
+
+    handleChangeSubject(event) {
+        this.setState({subject: event.target.value});
+    }
+    handleChangeMessage(event) {
+        this.setState({message: event.target.value});
+    }
+
+    handleSubmit(event) {
+        alert('Name: ' + this.state.name );
+        event.preventDefault();
+    }
+
+    render() {
+        return (
+            <form onSubmit={this.handleSubmit}>
+                <div>
+                    <label>
+                        Name:
+                        <input type="text" name={this.state.name} required onChange={this.handleChangeName} />
+                    </label>
+                </div>
+                <div>
+                    <label>
+                        Email:
+                        <input type="email" email={this.state.email} required onChange={this.handleChangeEmail} />
+                    </label>
+                </div>
+                <div>
+                    <label>
+                        Subject:
+                        <input type="text" subject={this.state.subject} required onChange={this.handleChangeSubject} />
+                    </label>
+                </div>
+                <div>
+                    <label>
+                        Message:
+                        <input type="text" message={this.state.message} required onChange={this.handleChangeMessage} />
+                    </label>
+                </div>
+                <div>
+                    <input type="submit" value="Submit" />
+                </div>
+            </form>
+        );
+    }
+}
+
+ReactDOM.render(
+    <FeedBack />,
+    document.getElementById('root')
+);
