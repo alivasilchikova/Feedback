@@ -8,22 +8,23 @@ class FeedBack extends React.Component {
         this.handleSubmit = this.handleSubmit.bind(this);    
     }
 
-   // handleChange(event){
-   //   var changeName = this.state.name;
-   //   var changeEmail = this.state.emael;
-   //  var changeSubject = this.state.subject;
-   //  var changeMessage = this.state.message;
-      
-   //   this.state({name: changeName, email: changeEmail, subject: changeSubject, message: changeMessage})
-   //}
-  
-    //handleChange(event) {
-    //    this.setState({email: findDOMNode(this.refs.email).value});
-    //}
+    handleChange(field) {
+        return function(event){
+        this.setState({[field]: event.target.value});
+        };
+    }
 
     handleSubmit(event) {
-        alert('Name: ' + this.state.name  + ' Email '+ this.state.email + ' Subject ' + this.state.subject + ' Message ' + this.state.message);
         event.preventDefault();
+        $.ajax({
+            type: "POST",
+            url: "/",
+            data: this.state,
+            success: function() {
+                alert("Данные отправлены" + 'Name: ' + this.state.name  + ' Email '+ this.state.email + ' Subject ' + this.state.subject + ' Message ' + this.state.message);
+            },
+    });
+        alert('Name: ' + this.state.name  + ' Email '+ this.state.email + ' Subject ' + this.state.subject + ' Message ' + this.state.message);
     }
 
     render() {
@@ -32,25 +33,25 @@ class FeedBack extends React.Component {
                 <div>
                     <label>
                         Name:
-                        <input type="text" name={this.state.name} required onChange={this.handleChange} />
+                        <input type="text" name={this.state.name} required onChange={this.handleChange('name')} />
                     </label>
                 </div>
                 <div>
                     <label>
                         Email:
-                        <input type="email" email={this.state.email} ref="email" required onChange={this.handleChange} />
+                        <input type="email" name={this.state.email} ref="email" required onChange={this.handleChange('email')} />
                     </label>
                 </div>
                 <div>
                     <label>
                         Subject:
-                        <input type="text" subject={this.state.subject} required onChange={this.handleChange} />
+                        <input type="text" name={this.state.subject} required onChange={this.handleChange('subject')} />
                     </label>
                 </div>
                 <div>
                     <label>
                         Message:
-                        <input type="text" message={this.state.message} required onChange={this.handleChange} />
+                        <input type="text" name={this.state.message} required onChange={this.handleChange('message')} />
                     </label>
                 </div>
                 <div>
